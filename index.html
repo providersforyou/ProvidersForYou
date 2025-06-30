@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Providers for You - Premium TV, Internet & Phone Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a6fd8;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --success: #00d4aa;
+            --warning: #ffc107;
+            --danger: #ff6b6b;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --text-muted: #a0aec0;
+            --border: #e2e8f0;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 25px rgba(0,0,0,0.15);
+            --shadow-xl: 0 20px 40px rgba(0,0,0,0.2);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--accent) 0%, #f5576c 100%);
+            --gradient-success: linear-gradient(135deg, #43e97b 0%, var(--success) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .floating-shape:nth-child(1) { width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-shape:nth-child(2) { width: 120px; height: 120px; top: 60%; left: 80%; animation-delay: 5s; }
+        .floating-shape:nth-child(3) { width: 60px; height: 60px; top: 80%; left: 20%; animation-delay: 10s; }
+        .floating-shape:nth-child(4) { width: 100px; height: 100px; top: 30%; left: 70%; animation-delay: 15s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(-40px) rotate(180deg); }
+            75% { transform: translateY(-20px) rotate(270deg); }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .cta-button {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(244, 143, 251, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image {
+            position: relative;
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
+            transition: var(--transition);
+        }
+
+        .hero-image:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-10px);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--border-radius-lg);
+            transition: var(--transition);
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Availability Check Section */
+        .availability-check {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(244, 143, 251, 0.05) 50%, rgba(159, 122, 234, 0.02) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .availability-check::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(102, 126, 234, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 70% 30%, rgba(244, 143, 251, 0.03) 0%, transparent 40%);
+            animation: float 25s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        .availability-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 3;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .availability-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.1),
+                0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .availability-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.15),
+                0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .availability-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .availability-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.4);
+        }
+
+        .availability-content h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .availability-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .availability-form {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            gap: 1rem;
+            align-items: center;
+            background: var(--white);
+            padding: 0.5rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .zip-input-group {
+            flex: 1;
+            position: relative;
+        }
+
+        .zip-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 40px;
+            background: transparent;
+            color: var(--text-primary);
+            outline: none;
+            font-weight: 500;
+        }
+
+        .zip-input::placeholder {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .location-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            pointer-events: none;
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 157, 0.3);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 0.75rem 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 107, 107, 0.2);
+        }
+
+        .error-message.show {
+            opacity: 1;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-label {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .feature-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .about-images {
+            position: relative;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1rem;
+            height: 400px;
+        }
+
+        .image-item {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-item.large {
+            grid-row: 1 / 3;
+        }
+
+        .image-item.small {
+            grid-column: 2;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .service-features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+        }
+
+        .service-features li i {
+            color: var(--success);
+            margin-right: 0.75rem;
+            width: 16px;
+        }
+
+        /* Partners Section */
+        .partners {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--light) 0%, rgba(102, 126, 234, 0.05) 100%);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .partner-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .partner-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 60px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .partner-card:hover .partner-logo img {
+            filter: grayscale(0%);
+        }
+
+        .partner-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: var(--gradient-dark);
+            color: var(--white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .contact-method:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-method i {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.75rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 3rem;
+        }
+
+        .form-group select option {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--gradient-secondary);
+            color: var(--white);
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Disclaimer Section */
+        .disclaimer {
+            padding: 3rem 0;
+            background: var(--light);
+            border-top: 1px solid var(--border);
+        }
+
+        .disclaimer-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .disclaimer h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .disclaimer p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in-up.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                gap: 0;
+                box-shadow: var(--shadow-lg);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-menu a {
+                padding: 1rem 2rem;
+                border-bottom: 1px solid var(--border);
+                width: 100%;
+                text-align: center;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                transform: none;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .hero-image:hover {
+                transform: translateY(-5px);
+            }
+
+            .availability-content h2 {
+                font-size: 2rem;
+            }
+
+            .availability-form {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .check-btn {
+                width: 100%;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-text {
+                order: 2;
+                text-align: center;
+            }
+
+            .about-images {
+                order: 1;
+            }
+
+            .image-grid {
+                grid-template-columns: 1fr;
+                height: 300px;
+            }
+
+            .image-item.large {
+                grid-row: auto;
+            }
+
+            .image-item.small {
+                display: none;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid,
+            .partners-grid,
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .partners-grid {
+                gap: 1rem;
+            }
+
+            .partner-card {
+                padding: 1rem;
+                min-height: 120px;
+            }
+
+            .partner-logo {
+                height: 50px;
+            }
+
+            .partner-logo img {
+                max-height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .availability-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .availability-content p {
+                font-size: 1rem;
+            }
+
+            .availability-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .availability-layout {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .availability-icon {
+                width: 120px;
+                height: 120px;
+                font-size: 3.5rem;
+                justify-self: center;
+            }
+
+            .zip-input,
+            .check-btn {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .zip-input {
+                padding-left: 3rem;
+            }
+
+            .service-card,
+            .partner-card {
+                padding: 1rem;
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .partner-card {
+                min-height: 100px;
+            }
+
+            .partner-logo {
+                height: 40px;
+                margin-bottom: 0.5rem;
+            }
+
+            .partner-logo img {
+                max-height: 40px;
+            }
+
+            .partner-card p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">Providers for You</a>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#partners">Partners</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="tel:+1-833-440-1596" class="cta-button"><i class="fas fa-phone"></i> (833) 440-1596</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <div class="hero-text">
+                    <h1>Find Your Perfect Provider Match</h1>
+                    <p>Discover the best TV, Internet, and Phone bundles tailored to your needs. Compare top providers, exclusive deals, and get connected with premium services at unbeatable prices.</p>
+                    <div class="hero-buttons">
+                        <a href="#availability" class="btn-primary">
+                            <i class="fas fa-search"></i>
+                            Find My Plan
+                        </a>
+                        <a href="tel:+1-833-440-1596" class="btn-secondary">
+                            <i class="fas fa-phone"></i>
+                            Call Now
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image fade-in-up">
+                        <img src="1.jpg" alt="Providers for You - Find Your Perfect Plan" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Availability Check Section -->
+    <section class="availability-check" id="availability">
+        <div class="container">
+            <div class="availability-content fade-in-up">
+                <div class="availability-card">
+                    <div class="availability-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h2>Enter Your Zipcode<br>to See What Speeds You Can Get</h2>
+                    <p>Check availability and compare internet speeds from top providers in your area. Find the perfect plan that meets your needs and get connected today.</p>
+                    
+                    <form class="availability-form" id="availability-form">
+                        <div class="zip-input-group">
+                            <input 
+                                type="text" 
+                                class="zip-input" 
+                                id="zipcode" 
+                                placeholder="Zip Code" 
+                                maxlength="5"
+                                pattern="[0-9]{5}"
+                                title="Please enter a 5-digit ZIP code"
+                            >
+                            <i class="fas fa-map-marker-alt location-icon"></i>
+                        </div>
+                        <button type="submit" class="check-btn">
+                            CHECK AVAILABILITY
+                        </button>
+                    </form>
+                    <div class="error-message" id="error-message">
+                        Please fill this field with a valid ZIP code
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <span class="about-label">SUSTAINABILITY IS OUR FOCUS</span>
+                    <h2>We Provide Best Internet<br>TV Service For You.</h2>
+                    <p>We are committed to delivering the highest quality internet services to our customers, ensuring seamless connectivity and outstanding performance. Our focus on sustainability and innovation drives us to offer reliable, secure, and high-speed internet solutions for your home.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>A Reliable Connection</h4>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Powerful Secure Internet</h4>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-tv"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Flex 4K & 8K Streaming</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-images">
+                    <div class="image-grid">
+                        <div class="image-item large">
+                            <img src="2.png" alt="Professional using laptop" />
+                        </div>
+                        <div class="image-item small">
+                            <img src="3.jpg" alt="Woman with technology" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Our Services</h2>
+                <p>We connect you with the best providers in your area, ensuring you get the perfect package for your lifestyle and budget.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>High-Speed Internet</h3>
+                    <p>Lightning-fast broadband connections for streaming, gaming, and working from home.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Up to 1000 Mbps speeds</li>
+                        <li><i class="fas fa-check"></i> Unlimited data plans</li>
+                        <li><i class="fas fa-check"></i> 24/7 technical support</li>
+                        <li><i class="fas fa-check"></i> No contracts available</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <h3>Premium TV Packages</h3>
+                    <p>Hundreds of channels including sports, movies, news, and entertainment for the whole family.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> 300+ HD channels</li>
+                        <li><i class="fas fa-check"></i> Premium movie channels</li>
+                        <li><i class="fas fa-check"></i> DVR included</li>
+                        <li><i class="fas fa-check"></i> On-demand content</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Phone Services</h3>
+                    <p>Crystal-clear calling with unlimited nationwide minutes and advanced features.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Unlimited local & long distance</li>
+                        <li><i class="fas fa-check"></i> Voicemail & caller ID</li>
+                        <li><i class="fas fa-check"></i> Call forwarding</li>
+                        <li><i class="fas fa-check"></i> Mobile app integration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="partners">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Our Trusted Partners</h2>
+                <p>We work with the nation's leading service providers to bring you the best deals and coverage.</p>
+            </div>
+            <div class="partners-grid">
+                <div class="partner-card fade-in-up">
+                    <div class="partner-logo">
+                        <img src="Frontier.png" alt="Frontier">
+                    </div>
+                    <p>Frontier</p>
+                </div>
+                <div class="partner-card fade-in-up">
+                    <div class="partner-logo">
+                        <img src="Earthlink.jpg" alt="EarthLink">
+                    </div>
+                    <p>EarthLink</p>
+                </div>
+                <div class="partner-card fade-in-up">
+                    <div class="partner-logo">
+                        <img src="hughesnet.svg" alt="HughesNet">
+                    </div>
+                    <p>HughesNet</p>
+                </div>
+                <div class="partner-card fade-in-up">
+                    <div class="partner-logo">
+                        <img src="KineticByWindstream.jpg" alt="Windstream">
+                    </div>
+                    <p>Windstream</p>
+                </div>
+                <div class="partner-card fade-in-up">
+                    <div class="partner-logo">
+                        <img src="ziply-svg-logo.svg" alt="Ziply Fiber">
+                    </div>
+                    <p>Ziply Fiber</p>
+                </div>
+                <div class="partner-card fade-in-up">
+                    <div class="partner-logo">
+                        <img src="AT&T.png" alt="AT&T">
+                    </div>
+                    <p>AT&T</p>
+                </div>
+                <div class="partner-card fade-in-up">
+                    <div class="partner-logo">
+                        <img src="optimum.png" alt="Optimum">
+                    </div>
+                    <p>Optimum</p>
+                </div>
+                <div class="partner-card fade-in-up">
+                    <div class="partner-logo">
+                        <img src="WOW_Logo_SVG.svg" alt="WOW!">
+                    </div>
+                    <p>WOW!</p>
+                </div>
+                <div class="partner-card fade-in-up">
+                    <div class="partner-logo">
+                        <img src="centurylink.svg" alt="CenturyLink">
+                    </div>
+                    <p>CenturyLink</p>
+                </div>
+                <div class="partner-card fade-in-up">
+                    <div class="partner-logo">
+                        <img src="brightspeed.svg" alt="Brightspeed">
+                    </div>
+                    <p>Brightspeed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Why Choose Providers for You?</h2>
+                <p>We make finding and comparing providers simple, fast, and completely free.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Easy Comparison</h3>
+                    <p>Compare plans, prices, and features from multiple providers in one place.</p>
+                </div>
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Best Deals</h3>
+                    <p>Access exclusive promotions and discounts not available elsewhere.</p>
+                </div>
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Expert Support</h3>
+                    <p>Get personalized recommendations from our knowledgeable team.</p>
+                </div>
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Quick Setup</h3>
+                    <p>Fast installation and activation to get you connected quickly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info fade-in-up">
+                    <h2>Get Connected Today</h2>
+                    <p>Ready to upgrade your home services? Contact us now for personalized recommendations and exclusive deals.</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Call Us</strong>
+                                <p>(833) 440-1596</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email Us</strong>
+                                <p>info@providersforyou.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Hours</strong>
+                                <p>Mon-Fri: 8AM-8PM EST</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form fade-in-up">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">TV or Internet Option</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select your preferred service</option>
+                                <option value="internet">Internet Only</option>
+                                <option value="tv">TV Only</option>
+                                <option value="bundle">TV + Internet Bundle</option>
+                                <option value="phone">TV + Internet + Phone</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" name="location" placeholder="Enter your city or ZIP code" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer Section -->
+    <section class="disclaimer">
+        <div class="container">
+            <div class="disclaimer-content">
+                <h3>Disclaimer</h3>
+                <p>The information provided on this website is for general informational purposes only. Providers for you makes no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the information, products, or services contained on this website. Any reliance you place on such information is therefore strictly at your own risk.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Providers for You</h3>
+                    <p>Your trusted partner in finding the perfect TV, Internet, and Phone services. We compare providers so you don't have to.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#">Internet Plans</a><br>
+                    <a href="#">TV Packages</a><br>
+                    <a href="#">Phone Services</a><br>
+                    <a href="#">Bundle Deals</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="#">Help Center</a><br>
+                    <a href="#">Installation</a><br>
+                    <a href="#">Technical Support</a><br>
+                    <a href="#">Billing Questions</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="privacy.html">Privacy Policy</a><br>
+                    <a href="terms.html">Terms of Service</a><br>
+                    <a href="refund.html">Refund Policy</a><br>
+                    <a href="#">Disclaimers</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Providers for You. All rights reserved. | We help you find the best providers in your area.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navMenu = document.querySelector('.nav-menu');
+            const icon = this.querySelector('i');
+            
+            navMenu.classList.toggle('active');
+            
+            if (navMenu.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navMenu = document.querySelector('.nav-menu');
+                const icon = document.querySelector('.mobile-menu-btn i');
+                
+                navMenu.classList.remove('active');
+                icon.className = 'fas fa-bars';
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in-up class
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Availability form submission
+        document.getElementById('availability-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const zipcodeInput = document.getElementById('zipcode');
+            const errorMessage = document.getElementById('error-message');
+            const zipcode = zipcodeInput.value.trim();
+            
+            // Clear previous error state
+            errorMessage.classList.remove('show');
+            zipcodeInput.style.borderColor = '';
+            
+            // Validate ZIP code
+            if (!zipcode) {
+                showError('Please fill this field');
+                return;
+            }
+            
+            if (!/^\d{5}$/.test(zipcode)) {
+                showError('Please enter a valid 5-digit ZIP code');
+                return;
+            }
+            
+            // Redirect to results page with ZIP code parameter
+            window.location.href = `results.html?zipcode=${zipcode}`;
+        });
+
+        // Contact form submission
+        document.querySelector('#contact form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for submitting your information! We will contact you soon with the best deals for your area.');
+        });
+
+        // Show error message function
+        function showError(message) {
+            const errorMessage = document.getElementById('error-message');
+            const zipcodeInput = document.getElementById('zipcode');
+            
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+            zipcodeInput.style.borderColor = '#ff6b6b';
+        }
+
+        // Format ZIP code input (only allow numbers)
+        document.getElementById('zipcode').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+            if (value.length > 5) {
+                value = value.substr(0, 5); // Limit to 5 digits
+            }
+            e.target.value = value;
+            
+            // Clear error when user starts typing
+            const errorMessage = document.getElementById('error-message');
+            if (errorMessage.classList.contains('show')) {
+                errorMessage.classList.remove('show');
+                e.target.style.borderColor = '';
+            }
+        });
+
+        // Add dynamic particle effects
+        function createParticles() {
+            const particlesContainer = document.querySelector('.bg-animation');
+            if (!particlesContainer) return;
+            
+            const particleCount = 15;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.position = 'absolute';
+                particle.style.background = 'rgba(102, 126, 234, 0.1)';
+                particle.style.borderRadius = '50%';
+                particle.style.pointerEvents = 'none';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 10 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animation = `floatParticle ${Math.random() * 10 + 10}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Add particle animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatParticle {
+                0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+                50% { transform: translateY(-20px) rotate(180deg); opacity: 0.3; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize particles on load
+        window.addEventListener('load', function() {
+            createParticles();
+        });
+    </script>
+</body>
+</html>

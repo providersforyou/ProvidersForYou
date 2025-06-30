@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Providers Available - Providers for You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a6fd8;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --success: #00d4aa;
+            --warning: #ffc107;
+            --danger: #ff6b6b;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --text-muted: #a0aec0;
+            --border: #e2e8f0;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 25px rgba(0,0,0,0.15);
+            --shadow-xl: 0 20px 40px rgba(0,0,0,0.2);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--accent) 0%, #f5576c 100%);
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            transform: translateX(-3px);
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .results-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .results-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .zipcode-display {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+
+        .providers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .provider-card {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .provider-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .provider-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .provider-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .provider-logo {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+        }
+
+        .provider-logo img {
+            max-width: 70px;
+            max-height: 50px;
+            object-fit: contain;
+        }
+
+        .provider-info h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .provider-info .speed {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .features-list li i {
+            color: var(--success);
+            width: 16px;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .no-results i {
+            font-size: 4rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .no-results p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .providers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-header h1 {
+                font-size: 2rem;
+            }
+
+            .provider-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="nav-container">
+                <a href="index.html" class="logo">Providers for You</a>
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="results-header">
+            <h1>Available Providers in <span class="zipcode-display" id="zipcode-display">Your Area</span></h1>
+            <p>Compare internet plans and speeds from top providers in your area</p>
+        </div>
+
+        <div class="providers-grid" id="providers-grid">
+            <!-- Results will be populated by JavaScript -->
+        </div>
+
+        <div class="no-results" id="no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3>No Providers Found</h3>
+            <p>We couldn't find any internet providers in your area. Please try a different ZIP code or contact us for assistance.</p>
+            <a href="index.html" class="cta-button">Search Another ZIP Code</a>
+        </div>
+    </main>
+
+    <script>
+        // Get ZIP code from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const zipcode = urlParams.get('zipcode');
+
+        // Sample provider data (in a real application, this would come from an API)
+        const providerData = {
+            '73001': [
+                {
+                    name: 'Frontier',
+                    speed: 'Up to 1000 Mbps',
+                    logo: 'Frontier.png',
+                    features: [
+                        'High-speed fiber internet',
+                        'No data caps',
+                        'Free modem rental',
+                        'Price lock guarantee'
+                    ]
+                },
+                {
+                    name: 'EarthLink',
+                    speed: 'Up to 500 Mbps',
+                    logo: 'Earthlink.jpg',
+                    features: [
+                        'Reliable DSL and fiber',
+                        'No annual contract',
+                        'Free installation',
+                        '24/7 customer support'
+                    ]
+                },
+                {
+                    name: 'HughesNet',
+                    speed: 'Up to 25 Mbps',
+                    logo: 'hughesnet.svg',
+                    features: [
+                        'Satellite internet',
+                        'Available everywhere',
+                        'Built-in Wi-Fi',
+                        'Free standard installation'
+                    ]
+                },
+                {
+                    name: 'Windstream',
+                    speed: 'Up to 200 Mbps',
+                    logo: 'KineticByWindstream.jpg',
+                    features: [
+                        'Kinetic high-speed internet',
+                        'Unlimited data',
+                        'No contracts required',
+                        'Local customer service'
+                    ]
+                }
+            ],
+            'default': [
+                {
+                    name: 'AT&T',
+                    speed: 'Up to 1000 Mbps',
+                    logo: 'AT&T.png',
+                    features: [
+                        'Fiber internet available',
+                        'No annual contract',
+                        'Free installation',
+                        '24/7 customer support'
+                    ]
+                },
+                {
+                    name: 'Ziply Fiber',
+                    speed: 'Up to 1000 Mbps',
+                    logo: 'ziply-svg-logo.svg',
+                    features: [
+                        'Ultra-fast fiber internet',
+                        'Unlimited data',
+                        'No contracts',
+                        'Local support team'
+                    ]
+                },
+                {
+                    name: 'Optimum',
+                    speed: 'Up to 940 Mbps',
+                    logo: 'optimum.png',
+                    features: [
+                        'High-speed cable internet',
+                        'Free modem included',
+                        'No data caps',
+                        'Flexible plans'
+                    ]
+                },
+                {
+                    name: 'WOW!',
+                    speed: 'Up to 1000 Mbps',
+                    logo: 'WOW_Logo_SVG.svg',
+                    features: [
+                        'Cable and fiber options',
+                        'No annual contracts',
+                        'Free installation',
+                        'Local customer service'
+                    ]
+                },
+                {
+                    name: 'CenturyLink',
+                    speed: 'Up to 940 Mbps',
+                    logo: 'centurylink.svg',
+                    features: [
+                        'DSL and fiber internet',
+                        'Price for life guarantee',
+                        'No data limits',
+                        'Free modem'
+                    ]
+                },
+                {
+                    name: 'Brightspeed',
+                    speed: 'Up to 200 Mbps',
+                    logo: 'brightspeed.svg',
+                    features: [
+                        'Fiber and DSL internet',
+                        'No contracts required',
+                        'Reliable connection',
+                        'Competitive pricing'
+                    ]
+                }
+            ]
+        };
+
+        function displayResults() {
+            if (!zipcode) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Display ZIP code
+            document.getElementById('zipcode-display').textContent = zipcode;
+
+            // Get providers for this ZIP code (use default if specific ZIP not found)
+            const providers = providerData[zipcode] || providerData['default'];
+            const gridContainer = document.getElementById('providers-grid');
+            const noResults = document.getElementById('no-results');
+
+            if (providers && providers.length > 0) {
+                gridContainer.innerHTML = providers.map(provider => `
+                    <div class="provider-card">
+                        <div class="provider-header">
+                            <div class="provider-logo">
+                                <img src="${provider.logo}" alt="${provider.name}" />
+                            </div>
+                            <div class="provider-info">
+                                <h3>${provider.name}</h3>
+                                <div class="speed">${provider.speed}</div>
+                            </div>
+                        </div>
+                        
+                        <ul class="features-list">
+                            ${provider.features.map(feature => `
+                                <li><i class="fas fa-check"></i> ${feature}</li>
+                            `).join('')}
+                        </ul>
+                        
+                        <a href="tel:+1-833-440-1596" class="cta-button">
+                            Call Now: (833) 440-1596
+                        </a>
+                    </div>
+                `).join('');
+            } else {
+                gridContainer.style.display = 'none';
+                noResults.style.display = 'block';
+            }
+        }
+
+        // Initialize the page
+        displayResults();
+    </script>
+</body>
+</html>

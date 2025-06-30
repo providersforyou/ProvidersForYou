@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund Policy - HQL Connects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8b5cf6;
+            --secondary-color: #a78bfa;
+            --accent-color: #06b6d4;
+            --neon-purple: #c084fc;
+            --neon-cyan: #22d3ee;
+            --glass-bg: rgba(139, 92, 246, 0.1);
+            --glass-border: rgba(139, 92, 246, 0.2);
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #f9fafb;
+            --bg-secondary: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            --gradient-secondary: linear-gradient(135deg, #c084fc, #22d3ee);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #f3e8ff 0%, #e0e7ff 50%, #cffafe 100%);
+            min-height: 100vh;
+        }
+
+        /* Glass Morphism Effects */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+            border-color: var(--neon-purple);
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+        }
+
+        .back-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: var(--glass-bg);
+            color: var(--text-primary);
+            border: 2px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            background: rgba(139, 92, 246, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(139, 92, 246, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .content-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .content-section h2 {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .content-section h3 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .content-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .last-updated {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .last-updated strong {
+            color: var(--primary-color);
+        }
+
+        .highlight-box {
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .highlight-box h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">HQL Connects</a>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Refund Policy</h1>
+                <p>Our general refund terms and how to request a refund for our services.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>General Refund Policy</h2>
+                <p>Hql Connects strives to ensure the satisfaction of our customers. However, as a distributor of third-party services, our refund policies are aligned with the policies of the service providers we represent. Refunds may be issued under the following circumstances:</p>
+                <ul>
+                    <li><strong>Cancellation Before Installation:</strong> If you cancel your service request before the service installation, you may be eligible for a full refund of any upfront payments made to Hql Connects.</li>
+                    <li><strong>Service Issues:</strong> If there is a verifiable issue with the service installation or activation that is directly attributable to Hql Connects, we will work to rectify the issue or, in rare cases, process a refund.</li>
+                    <li><strong>Non-Refundable Items:</strong> Fees associated with the processing of services, including installation charges, activation fees, and administrative costs, are non-refundable.</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>Refund Request Process</h2>
+                <ul>
+                    <li><strong>Submit a Request:</strong> Contact our customer service team within 14 days of the service issue to initiate a refund request.</li>
+                    <li><strong>Provide Documentation:</strong> You may be required to provide documentation or information regarding the service issue.</li>
+                    <li><strong>Refund Timelines:</strong> Approved refunds will be processed within 7-14 business days, depending on your payment method and financial institution.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+        </div>
+    </main>
+</body>
+</html>

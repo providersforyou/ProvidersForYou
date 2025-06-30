@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - Providers for You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8b5cf6;
+            --secondary-color: #a78bfa;
+            --accent-color: #06b6d4;
+            --neon-purple: #c084fc;
+            --neon-cyan: #22d3ee;
+            --glass-bg: rgba(139, 92, 246, 0.1);
+            --glass-border: rgba(139, 92, 246, 0.2);
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #f9fafb;
+            --bg-secondary: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            --gradient-secondary: linear-gradient(135deg, #c084fc, #22d3ee);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #f3e8ff 0%, #e0e7ff 50%, #cffafe 100%);
+            min-height: 100vh;
+        }
+
+        /* Glass Morphism Effects */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+            border-color: var(--neon-purple);
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+        }
+
+        .back-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: var(--glass-bg);
+            color: var(--text-primary);
+            border: 2px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            background: rgba(139, 92, 246, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(139, 92, 246, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .content-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .content-section h2 {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .content-section h3 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .content-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .last-updated {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .last-updated strong {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">Providers for You</a>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Terms & Conditions</h1>
+                <p>Welcome to Providers for You. These Terms and Conditions ("Terms") govern your use of our website, services, and all related interactions between you and Providers for You. By accessing our website or utilizing our services, you agree to comply with and be bound by these Terms. Please read them carefully before proceeding.</p>
+            </div>
+
+            <div class="content-section">
+                <p>If you do not agree with any of the Terms outlined below, please do not use our services or this website.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>1. Definitions</h2>
+                <ul>
+                    <li><strong>"Providers for You"</strong> refers to our company, an authorized dealer providing intermediary services between consumers and third-party service providers, including but not limited to internet, cellular, streaming, and bundled services.</li>
+                    <li><strong>"User", "you", or "your"</strong> refers to any person or entity accessing our website or using our services.</li>
+                    <li><strong>"Services"</strong> refers to any support or execution services provided by Providers for You, including but not limited to setting up new connections, plan upgrades, account cancellations, bill payments, and related support.</li>
+                    <li><strong>"Third-Party Service Providers"</strong> refers to external companies and service providers with whom Providers for You has partnerships to offer their services to customers.</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>2. Scope of Services</h2>
+                <p>Providers for You offers execution services on behalf of third-party service providers. We assist in tasks such as new connection setup, billing assistance, account upgrades, and other support-related activities. While Providers for You facilitates these services, the actual delivery of internet, streaming, or cellular services is provided by third-party service providers.</p>
+                <ul>
+                    <li>Providers for You is not responsible for the quality, uptime, or reliability of the services delivered by third-party service providers.</li>
+                    <li>All service-related issues, outages, or quality concerns should be addressed directly with the relevant service provider.</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>3. Account Responsibilities</h2>
+                <p>To use our services, you may be required to create an account on our website. You agree to provide accurate and complete information when setting up an account and to keep your account information updated.</p>
+                <ul>
+                    <li><strong>Account Security:</strong> You are responsible for maintaining the confidentiality of your account credentials and for all activities conducted under your account. Providers for You will not be liable for any losses resulting from unauthorized use of your account.</li>
+                    <li><strong>Accurate Information:</strong> You agree to provide correct and up-to-date information, including your billing and contact details. Providing false or incorrect information may result in the suspension or termination of your account.</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>4. Payments and Fees</h2>
+                <p>Providers for You charges execution fees for the administrative services it provides. These fees are separate from the charges billed by third-party service providers.</p>
+                <ul>
+                    <li><strong>Execution Fees:</strong> The fees charged by Providers for You cover the execution and facilitation of tasks such as connection setup, plan changes, and account management. These fees will be disclosed before you confirm a service request.</li>
+                    <li><strong>Third-Party Billing:</strong> The charges billed by third-party service providers are outside of Providers for You’ control, and you are responsible for paying these charges directly to the provider according to their billing terms.</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>5. Service Requests</h2>
+                <p>When you request services through Providers for You, you agree to the following conditions:</p>
+                <ul>
+                    <li><strong>Service Execution:</strong> Providers for You will make reasonable efforts to ensure the timely execution of your requests, such as new connections or upgrades. However, we cannot guarantee a specific timeframe for completion as it may depend on third-party providers' processes.</li>
+                    <li><strong>Cancellations:</strong> If you wish to cancel a service request, you must notify us immediately. Cancellations may only be possible if the request has not yet been executed. For more details, please refer to our Refund Policy.</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>6. Limitations of Liability</h2>
+                <p>While we strive to provide quality service, Providers for You does not assume responsibility for the following:</p>
+                <ul>
+                    <li><strong>Third-Party Provider Failures:</strong> Providers for You is not responsible for any service disruptions, quality issues, or delays caused by third-party service providers. Any such issues must be taken up with the respective provider.</li>
+                    <li><strong>Accuracy of Information:</strong> Providers for You does its best to ensure the accuracy of the information provided on our website. However, we do not guarantee that the information is free of errors, and we reserve the right to correct any inaccuracies or omissions.</li>
+                    <li><strong>Service Delays:</strong> Providers for You will not be liable for any delays in service execution caused by circumstances outside our control, including but not limited to technical difficulties, third-party delays, or force majeure events.</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>7. Use of the Website</h2>
+                <p>Your use of the Providers for You website is subject to the following conditions:</p>
+                <ul>
+                    <li><strong>Prohibited Activities:</strong> You agree not to engage in any unlawful, harmful, or malicious activity while using our website, including but not limited to hacking, transmitting viruses, or engaging in fraudulent behavior.</li>
+                    <li><strong>Intellectual Property:</strong> All content on this website, including text, graphics, logos, and software, is the intellectual property of Providers for You or our licensors. You may not copy, distribute, or otherwise use this content without express permission.</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>8. Privacy Policy</h2>
+                <p>Your use of the Providers for You website and services is subject to our Privacy Policy, which outlines how we collect, use, and protect your personal data.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>9. Modifications to Terms</h2>
+                <p>Providers for You reserves the right to modify or update these Terms at any time without prior notice. Any changes to these Terms will be posted on this page, and the updated version will take effect immediately upon posting. We encourage you to review these Terms periodically to stay informed of any updates.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>10. Termination</h2>
+                <p>Providers for You reserves the right to suspend or terminate your account or access to our services at our discretion, including but not limited to violations of these Terms, fraudulent activity, or failure to make payments.</p>
+            </div>
+        </div>
+    </main>
