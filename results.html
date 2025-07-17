@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find and compare internet providers in your area. View available plans, speeds, and features from top providers like AT&T, Frontier, Spectrum, and more.">
+    <meta name="keywords" content="internet providers, broadband comparison, fiber internet, cable internet, DSL, satellite internet">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://providerforyou.com/results.html">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Internet Providers Available - Providers for You">
+    <meta property="og:description" content="Compare internet providers and plans in your area. Find the best speeds and prices.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://providerforyou.com/results.html">
+    <meta property="og:image" content="https://providerforyou.com/og-results.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Internet Providers Available - Providers for You">
+    <meta name="twitter:description" content="Compare internet providers and plans in your area.">
+    <meta name="twitter:image" content="https://providerforyou.com/og-results.jpg">
+    
+    <title>Internet Providers Available - Providers for You</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <main class="container">
+        <!-- Check Availability Section -->
+        <div>
+                <form class="availability-form" id="search-form">
+                    <div class="zip-input-group">
+                        <input 
+                            type="text" 
+                            class="zip-input" 
+                            id="zipcode-search" 
+                            placeholder="Enter ZIP Code" 
+                            maxlength="5"
+                            pattern="[0-9]{5}"
+                            title="Please enter a 5-digit ZIP code"
+                        >
+                        <i class="fas fa-map-marker-alt location-icon"></i>
+                    </div>
+                    <button type="submit" class="check-btn">
+                        SEARCH PROVIDERS
+                    </button>
+                </form>
+                <div class="error-message" id="search-error-message">
+                    Please enter a valid 5-digit ZIP code
+                </div>
+        </div>
+
+        <div class="results-header">
+            <h1>Available Providers in <span class="zipcode-display" id="zipcode-display">Your Area</span></h1>
+            <p>Compare internet plans and speeds from top providers in your area</p>
+        </div>
+
+        <div class="providers-grid" id="providers-grid">
+            <!-- Results will be populated by JavaScript -->
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p>Searching for providers in your area...</p>
+        </div>
+
+        <div class="no-results" id="no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3>No Providers Found</h3>
+            <p>We couldn't find any internet providers in your area. Please try a different ZIP code or contact us for assistance.</p>
+            <a href="../index.html" class="cta-button">Search Another ZIP Code</a>
+        </div>
+    </main>
+
+    <!-- Provider Database -->
+    <script src="../assets/js/providers-database.js"></script>
+    
+    <script>
+        // Get ZIP code from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const zipcode = urlParams.get('zip'); // Changed from 'zipcode' to 'zip' to match index.html
+
+        // Handle search form submission
+        function setupSearchForm() {
+            const searchForm = document.getElementById('search-form');
+            const zipcodeInput = document.getElementById('zipcode-search');
+            const errorMessage = document.getElementById('search-error-message');
+
+            // Pre-fill input if we have a current zipcode
+            if (zipcode) {
+                zipcodeInput.value = zipcode;
+            }
+
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const inputValue = zipcodeInput.value.trim();
+                
+                // Validate ZIP code
+                if (!inputValue) {
+                    showError('Please enter a ZIP code');
+                    return;
+                }
+                
+                if (inputValue.length !== 5 || !/^\d{5}$/.test(inputValue)) {
+                    showError('Please enter a valid 5-digit ZIP code');
+                    return;
+                }
+                
+                // Hide error message and show loading
+                errorMessage.classList.remove('show');
+                showLoading();
+                
+                // Simulate search delay for better UX
+                setTimeout(() => {
+                    hideLoading();
+                    // Update URL and reload results
+                    const newUrl = `${window.location.pathname}?zip=${inputValue}`;
+                    window.history.pushState({}, '', newUrl);
+                    
+                    // Update the current zipcode variable and refresh results
+                    window.location.search = `?zip=${inputValue}`;
+                }, 800);
+            });
+
+            // Only allow numeric input
+            zipcodeInput.addEventListener('input', function(e) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+                if (this.value.length <= 5) {
+                    errorMessage.classList.remove('show');
+                }
+            });
+
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.classList.add('show');
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('providers-grid').style.display = 'none';
+            document.getElementById('no-results').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').classList.remove('show');
+            document.getElementById('providers-grid').style.display = 'grid';
+        }
+
+        function displayResults() {
+            if (!zipcode) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Display ZIP code
+            document.getElementById('zipcode-display').textContent = zipcode;
+
+            // Get providers for this ZIP code using our database
+            const providers = window.ProvidersDB.checkAvailability(zipcode);
+            const gridContainer = document.getElementById('providers-grid');
+            const noResults = document.getElementById('no-results');
+
+            if (providers && providers.length > 0) {
+                gridContainer.innerHTML = providers.map(provider => {
+                    // Generate random rating for demo (4.0-4.9)
+                    const rating = (4.0 + Math.random() * 0.9).toFixed(1);
+                    const stars = generateStars(rating);
+                    const reviewCount = Math.floor(Math.random() * 500) + 100;
+                    const isPopular = Math.random() > 0.7;
+                    
+                    return `
+                    <div class="provider-card">
+                        ${isPopular ? '<div class="provider-badge">Popular</div>' : ''}
+                        <div class="provider-header">
+                            <div class="provider-logo">
+                                <img src="${provider.logo}" alt="${provider.name}" onerror="this.style.display='none'" />
+                            </div>
+                            <div class="provider-info">
+                                <h3>${provider.name}</h3>
+                                <div class="provider-type">${provider.type}</div>
+                                <div class="provider-speed">Up to ${getRandomSpeed()} Mbps</div>
+                                <div class="provider-rating">
+                                    <div class="stars">${stars}</div>
+                                    <span class="rating-text">${rating} (${reviewCount} reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <ul class="features-list">
+                            ${provider.features.map(feature => `
+                                <li><i class="fas fa-check"></i> ${feature}</li>
+                            `).join('')}
+                        </ul>
+                        
+                        <a href="tel:+1-833-440-1596" class="cta-button" onclick="trackProviderClick('${provider.name}')">
+                            Call Now: (833) 440-1596
+                        </a>
+                    </div>
+                `;
+                }).join('');
+            } else {
+                gridContainer.style.display = 'none';
+                noResults.style.display = 'block';
+            }
+        }
+
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt star"></i>';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star star"></i>';
+            }
+            
+            return stars;
+        }
+
+        function getRandomSpeed() {
+            const speeds = [25, 50, 100, 200, 300, 500, 1000];
+            return speeds[Math.floor(Math.random() * speeds.length)];
+        }
+
+        function trackProviderClick(providerName) {
+            // Analytics tracking
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'provider_click', {
+                    'provider_name': providerName,
+                    'page_location': window.location.href,
+                    'zipcode': zipcode
+                });
+            }
+            console.log(`Provider clicked: ${providerName} in ${zipcode}`);
+        }
+
+        // Initialize the page
+        setupSearchForm();
+        displayResults();
+    </script>
+    
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+    
+    <!-- External Scripts -->
+    <script src="assets/js/header-footer-loader.js"></script>
+</body>
+</html>
