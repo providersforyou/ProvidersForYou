@@ -132,73 +132,73 @@ const zipToProviders = {
 const providerDetails = {
     "AT&T": {
         name: "AT&T",
-        logo: "AT&T.png",
+        logo: "assets/images/logos/AT&T.png",
         features: ["Fiber Internet", "5G Network", "Unlimited Data", "24/7 Support"],
         type: "Fiber/DSL"
     },
     "Frontier": {
         name: "Frontier",
-        logo: "Frontier.png",
+        logo: "assets/images/logos/Frontier.png",
         features: ["Fiber Internet", "No Data Caps", "Free Wi-Fi Router", "Local Support"],
         type: "Fiber"
     },
     "Optimum": {
         name: "Optimum",
-        logo: "optimum.png",
+        logo: "assets/images/logos/optimum.png",
         features: ["Cable Internet", "High Speeds", "Wi-Fi Hotspots", "Bundle Deals"],
         type: "Cable"
     },
     "Brightspeed": {
         name: "Brightspeed",
-        logo: "brightspeed.svg",
+        logo: "assets/images/logos/brightspeed.svg",
         features: ["Fiber Internet", "Reliable Service", "Local Support", "Competitive Pricing"],
         type: "Fiber"
     },
     "WOW": {
         name: "WOW! Internet",
-        logo: "WOW_Logo_SVG.svg",
+        logo: "assets/images/logos/WOW_Logo_SVG.svg",
         features: ["Cable Internet", "No Contracts", "Free Installation", "24/7 Support"],
         type: "Cable"
     },
     "Kinetic": {
         name: "Kinetic by Windstream",
-        logo: "KineticByWindstream.jpg",
+        logo: "assets/images/logos/KineticByWindstream.jpg",
         features: ["Fiber Internet", "Unlimited Data", "Wi-Fi Equipment", "Local Service"],
         type: "Fiber"
     },
     "CenturyLink": {
         name: "CenturyLink",
-        logo: "centurylink.svg",
+        logo: "assets/images/logos/centurylink.svg",
         features: ["DSL Internet", "Price for Life", "No Data Caps", "Professional Installation"],
         type: "DSL/Fiber"
     },
     "Ziply": {
         name: "Ziply Fiber",
-        logo: "ziply-svg-logo.svg",
+        logo: "assets/images/logos/ziply-svg-logo.svg",
         features: ["Fiber Internet", "Gigabit Speeds", "No Data Caps", "Local Support"],
         type: "Fiber"
     },
     "HughesNet": {
         name: "HughesNet",
-        logo: "hughesnet.svg",
+        logo: "assets/images/logos/hughesnet.svg",
         features: ["Satellite Internet", "Nationwide Coverage", "Built-in Wi-Fi", "Professional Installation"],
         type: "Satellite"
     },
     "Earthlink": {
         name: "EarthLink",
-        logo: "Earthlink.jpg",
+        logo: "assets/images/logos/Earthlink.jpg",
         features: ["Various Technologies", "No Data Caps", "Award-winning Support", "Flexible Plans"],
         type: "Multiple"
     },
     "Spectrum": {
         name: "Spectrum",
-        logo: "spectrum.png",
+        logo: "assets/images/logos/placeholder.svg",
         features: ["Cable Internet", "No Data Caps", "Free Modem", "24/7 Support"],
         type: "Cable"
     },
     "Windstream": {
         name: "Windstream",
-        logo: "KineticByWindstream.jpg",
+        logo: "assets/images/logos/KineticByWindstream.jpg",
         features: ["Fiber Internet", "Unlimited Data", "Wi-Fi Equipment", "Local Service"],
         type: "Fiber"
     }
